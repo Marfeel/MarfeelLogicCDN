@@ -9,7 +9,7 @@ A CDN is made up of a network of servers all over the world called points of pre
 Websites temporarily store (also known as cache) their content on CDNs so that is can be delivered from an edge server much quicker than if it had to be delivered all the way from an origin server. When a user wants to access content from a website or mobile app that uses a CDN to host their content, that user's requests only has to travel to a nearby POP and back, not all the way back to the origin server.
 
 # 2. What is the Marfeel server-side device detection on CDN?
-Garda is what allows Marfeel to show a partner's Marfeelized content under the publisher's URL and essentially activate their Marfeel PWA.
+[Garda](https://atenea.marfeel.com/atn/marfeel-press/marfeel-sdk/marfeel-garda "Marfeel Garda") is what allows Marfeel to show a partner's Marfeelized content under the publisher's URL and essentially activate their Marfeel [PWA](https://atenea.marfeel.com/atn/marfeel-press/360-platform/marfeel-progressive-webapps-pwas "Marfeel PWA").
 
 Although this is the ultimate function of the Garda, the way it's engineered significantly impacts a Marfeel PWA's speed, performance, and therefore overall UX.
 
