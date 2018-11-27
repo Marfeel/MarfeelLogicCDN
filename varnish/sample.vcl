@@ -13,19 +13,14 @@ backend marfeel {
     .port = "443";
 }
 
-#   	table mrf {
-#      	"mobile":    "enabled",
-#      	"tablet":    "enabled",
-#      	"amp":       "enabled",
-#      	"ads":       "enabled",
-#      	"sw":        "enabled",
-#      	"version":   "0.1"
-#   	}
-
-	table mrf {
-		"mobile";
-		"tablet";
-	}
+table mrf {
+    "mobile":    "enabled",
+    "tablet":    "enabled",
+    "amp":       "enabled",
+    "ads":       "enabled",
+    "sw":        "enabled",
+    "version":   "0.1"
+}
 
 sub vcl_recv {
 
