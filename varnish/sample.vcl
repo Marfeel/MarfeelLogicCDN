@@ -3,20 +3,15 @@ vcl 4.0;
 import std;
 import cookie;
 
-sub vcl_recv {
+backend default {
+    .host = "origin.thecustomerdomain.com";
+    .port = "443";
+}
 
-   	backend origin_desktop_backend {
-      	.host = "origin.thecustomerdomain.com";
-      	.port = "443";
-   	}
-
-   	backend marfeelcache_com_backend {
-      	.host = "backend.marfeelcache.com";
-      	.port = "443";
-   	}
-
-   	# default conditions
-   	set req.backend = origin_desktop_backend;
+backend marfeel {
+    .host = "backend.marfeelcache.com";
+    .port = "443";
+}
 
 #   	table mrf {
 #      	"mobile":    "enabled",
@@ -31,7 +26,12 @@ sub vcl_recv {
 		"mobile";
 		"tablet";
 	}
-  
+
+sub vcl_recv {
+
+   	# default conditions
+   	set req.backend_hint = default;
+
    	if (req.restarts > 0 ) {
     	unset req.http.MRF-MarfeelDT;
       	unset req.http.marfeelOrigin;
@@ -140,7 +140,7 @@ sub vcl_miss {
 
    # Send Requests To Marfeel Backends
    if (req.http.marfeelOrigin == "Mobile") {
-      set req.backend = marfeelcache_com_backend;
+      set req.backend_hint = marfeel;
       set bereq.http.host = "backend.marfeelcache.com";
    }
 }
@@ -148,7 +148,7 @@ sub vcl_miss {
 sub vcl_pass {
    # Send Requests To Marfeel Backends
    if (req.http.marfeelOrigin == "Mobile") {
-      set req.backend = marfeelcache_com_backend;
+      set req.backend_hint = marfeel;
       set bereq.http.host = "backend.marfeelcache.com";
    }
 }
