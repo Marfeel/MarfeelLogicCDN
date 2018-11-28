@@ -27,3 +27,13 @@ Marfeel creates a configuration based on device type on the Marfeel CDN platform
 The original requests go to the Marfeel CDN platform, instead of the customer´s servers (you need to change your DNS entries for this). When a mobile device is detected, the request is directly sent to Marfeel's backend servers, instantly providing the user with the tenant's Marfeel version. If a desktop device is detected, the request is sent to customer´s origin servers, and a cached Desktop version is serverd to the end users.
 
 This technique allows Marfeel to remove the interactions and any dependency on client-side servers, thereby significantly reducing the load time of the mobile page.
+
+# 4. How you could build the device detection on your infrastructure.
+You could do the device detection in your infrastructure servers and resend (proxy) this kinds of requests to the Marfeel CDN.
+Then, the only thing you have to do is to check if the UserAgent...
+- contains "windows phone|mobile.*firefox|tablet.*firefox"
+- contains "(ip(hone|od).*?os )(?!1_|2_|3_|4_|X)|mozill?a.*android (?!(1|2|3)\.)[0-9].*mobile|bb10"
+- contains "\bsilk\b"
+- contains "(ipad.*?os )(?!1_|2_|3_|4_|x)"
+
+And re-send/proxy these requests to Marfeel CDN (ssl.marfeelcdn.com).
