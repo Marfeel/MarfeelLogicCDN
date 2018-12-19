@@ -63,7 +63,7 @@ sub vcl_recv {
    		if (std.tolower(req.url) ~ "marfeelgarda=off" || std.tolower(cookie.get("marfeelgarda")) ~ "off") {
       		  set req.http.MRF-MarfeelDT = "l";
       		  set req.http.Device = "Mobile";
-   		} elif (std.tolower(req.url) ~ "marfeelgarda=no" || std.tolower(cookie.get("marfeelgarda")) ~ "no") {
+   		} elsif (std.tolower(req.url) ~ "marfeelgarda=no" || std.tolower(cookie.get("marfeelgarda")) ~ "no") {
       		  unset req.http.MRF-MarfeelDT;
       		  set req.http.Device = "Desktop";
    		}
