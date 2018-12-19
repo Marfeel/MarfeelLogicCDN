@@ -61,13 +61,11 @@ sub vcl_recv {
    		}
 
    		if (std.tolower(req.url) ~ "marfeelgarda=off" || std.tolower(cookie.get("marfeelgarda")) ~ "off") {
-      		set req.http.MRF-MarfeelDT = "l";
-      		set req.http.Device = "Mobile";
-   		}
-
-   		if (std.tolower(req.url) ~ "marfeelgarda=no" || std.tolower(cookie.get("marfeelgarda")) ~ "no") {
-      		unset req.http.MRF-MarfeelDT;
-      		set req.http.Device = "Desktop";
+      		  set req.http.MRF-MarfeelDT = "l";
+      		  set req.http.Device = "Mobile";
+   		} elif (std.tolower(req.url) ~ "marfeelgarda=no" || std.tolower(cookie.get("marfeelgarda")) ~ "no") {
+      		  unset req.http.MRF-MarfeelDT;
+      		  set req.http.Device = "Desktop";
    		}
 
    		if (std.tolower(req.url) ~ "fromt=yes" || std.tolower(cookie.get("fromt")) ~ "yes") {
